@@ -94,6 +94,12 @@ ul {
   border-radius: 3px;
   padding: 22px 15px;
   cursor: pointer;
+  @media (max-width: 767px) {
+    font-size: 22px;
+  }
+  @media (max-width: 575px) {
+    font-size: 20px;
+  }
 }
 .btn-danger {
   background-color: rgb(211, 105, 105);
@@ -126,4 +132,12 @@ ul {
 }
 .hidden {
   display: none !important;
+}
+.form-control {
+  &.error {
+    border-color: #da0000 !important;
+  }
+  &.valid {
+    border-color: #1b991b!important;
+  }
 }

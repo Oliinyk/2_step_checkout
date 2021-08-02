@@ -16,8 +16,9 @@
 	<link rel="stylesheet" href="assets/css/style.css" />
 	<!-- endbuild -->
 	<!-- build:js assets/js/all.js defer -->
+	
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 	<script src="assets/js/plugins.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="assets/js/intlTelInput.js"></script>
 	<script src="assets/js/script.js"></script>
 	<!-- endbuild -->
@@ -52,7 +53,8 @@
 				<article class="col form-col">
 					<div class="inner-wrap">
 						<h3 class="title">Enroll Today To Save $500!</h3>
-						<form class="form">
+
+						<div class="form">
 							<div class="form-head">
 								<div class="head-item item-personal active">
 									<p class="title-line">1  YOUR INFO</p>
@@ -63,67 +65,88 @@
 									<p>Card details</p>
 								</div>
 							</div>
-							<div class="form-body">
-								<div class="first-form-step">
-									<p class="form-designation">* Denotes mandatory fields</p>
-									<div class="form-group">
-										<label for="nameInput" class="form-label">Full name*</label>
-	  									<input type="text" class="form-control" id="nameInput" placeholder="Full name...">
-									</div>
-									<div class="form-group">
-										<label for="emailInput" class="form-label">Email*</label>
-	  									<input type="email" class="form-control" id="emailInput" placeholder="Email address...">
-									</div>
-									<div class="form-group">
-										<label for="phoneInput" class="form-label">Phone number*</label>
-	  									<input type="tel" id="phone" name="phone" class="form-control">
-									</div>
-									<div class="form-group">
-										<button type="button" class="btn btn-danger stepsBtnJs">Go To Step #2</button>
-										<p class="small-text">We respect your privacy & information</p>
-									</div>
-								</div>
 
-
-								<div class="second-form-step">
-									<a href="#" class="back-btn backBtnJs">< Name and email</a>
-
+							<form class="first-form-step validateJsInfo">
+								<div class="form-body">
 									<div class="">
-										<p>Item</p>
-										<p>Price</p>
-									</div>
-
-		
-									<div class="radio-group-options">
-										<div class="form-check">
-										  <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioOneTime" checked>
-										  <label class="form-check-label" for="radioOneTime">
-											Beauty Boss 2.0 - One-time payment
-										  </label>
+										<p class="form-designation">* Denotes mandatory fields</p>
+										<div class="form-group">
+											<label for="nameInput" class="form-label">Full name*</label>
+		  									<input type="text" class="form-control" id="nameInput" placeholder="Full name..." name="firstName">
 										</div>
-										<div class="form-check">
-										  <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioPayment">
-										  <label class="form-check-label" for="radioPayment">
-											Beauty Boss 2.0 - Payment plan
-										  </label>
+										<div class="form-group">
+											<label for="emailInput" class="form-label">Email*</label>
+		  									<input type="email" class="form-control" id="emailInput" placeholder="Email address..." name="email">
+										</div>
+										<div class="form-group">
+											<label for="phoneInput" class="form-label">Phone number*</label>
+		  									<input type="tel" id="phone" class="form-control" name="required">
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-danger stepsBtnJs">Go To Step #2</button>
+											<p class="small-text">We respect your privacy & information</p>
 										</div>
 									</div>
-
-									<div class="form-group">
-										<label for="phoneInput" class="form-label">Phone number*</label>
-	  									<input type="text" name="" class="form-control">
-	  									<input type="text" name="" class="form-control">
-	  									<input type="text" name="" class="form-control">
-									</div>
-
-									<div class="form-group">
-										<button type="button" class="btn btn-danger stepsBtnJs">Get Instant Access Now</button>
-										<p class="small-text">*Payments are secured with 24-bit encryption*</p>
-									</div>
-
 								</div>
-							</div>
-						</form>
+							</form>
+
+							<form class="second-form-step validateJsBilling">
+								<div class="form-body">
+									<div class="">
+										<a href="#" class="back-btn backBtnJs">< Name and email</a>
+										<div class="t-head">
+											<p>Item</p>
+											<p>Price</p>
+										</div>
+										<div class="radio-group-options">
+											<div class="form-check-row">
+												<div class="form-check">
+												  <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioOneTime" value="$1,497" checked>
+												  <label class="form-check-label" for="radioOneTime">
+													Beauty Boss 2.0 - One-time payment
+												  </label>
+												</div>
+												<div class="form-price">
+													<p>US$1,497</p>
+												</div>
+											</div>
+											<div class="form-check-row">
+												<div class="form-check">
+												  <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioPayment" value="$797">
+												  <label class="form-check-label" for="radioPayment">
+													Beauty Boss 2.0 - Payment plan
+												  </label>
+												</div>
+												<div class="form-price">
+													<p>3x installments of US$797</p>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="phoneInput" class="form-label">Credit Card Number*</label>
+		  									<div class="form-control form-control-group">
+		  										<input type="text" name="" class="form-control-inner" placeholder="Card number">
+		  										<input type="text" name="" class="form-control-inner" placeholder="MM/YY">
+		  										<input type="text" name="" class="form-control-inner" placeholder="CVC">
+		  									</div>
+										</div>
+										<div class="t-foot">
+											<p>Item</p>
+											<p>amount</p>
+										</div>
+										<div class="amount-row">
+											<p></p>
+											<p class="amount-col">US<span class="amountTotalJs"></span></p>
+										</div>
+										<div class="form-group">
+											<button type="button" class="btn btn-danger stepsBtnJs">Get Instant Access Now</button>
+											<p class="small-text">*Payments are secured with 24-bit encryption*</p>
+										</div>
+									</div>
+								</div>
+							</form>
+
+						</div>
 						<div class="paypal-holder">
 							<div class="btn paypal-btn">
 								<p><img src="./assets/images/paypal-payment.png" alt="paypal-payment" /> Try PayPal Credit</p>

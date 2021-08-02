@@ -1,8 +1,5 @@
 $(document).ready(function () {
 
-
-// window.intlTelInputGlobals.loadUtils("assets/js/utils.js");
-
   let input = document.querySelector("#phone");
   window.intlTelInput(input, {
     // allowDropdown: false,
@@ -49,24 +46,11 @@ $(document).ready(function () {
     // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
     // placeholderNumberType: "MOBILE",
     // preferredCountries: ['cn', 'jp'],
-    separateDialCode: true,
+    separateDialCode: true
 
   });
 
-// console.log(intlTelInput.input)
-// var countryData = instance.getSelectedCountryData();
 
-// console.log(countryData)
-
-
-
-  $(document).on("click", ".stepsBtnJs", function () {
-    $(".first-form-step").addClass("hidden");
-    $(".second-form-step").addClass("active");
-    $(".form-head .item-personal").removeClass("active");
-    $(".form-head .item-billing").addClass("active");
-    $(".form-head").addClass("billing-step");
-  });
 
   $(document).on("click", ".backBtnJs", function (e) {
     e.preventDefault();
@@ -76,5 +60,40 @@ $(document).ready(function () {
     $(".form-head .item-billing").removeClass("active");
     $(".form-head").removeClass("billing-step");
   });
+
+  let checkedVal= $(".radio-group-options input[type='radio']:checked").val();
+  $(".amountTotalJs").text(checkedVal);
+
+  $(document).on("click", ".form-check .form-check-label, .form-check .form-check-input", function () {
+    let thisVal = $(this).closest('.form-check').find('input').val();
+    $(".amountTotalJs").text(thisVal);
+  });
+
+
+  $(".validateJsInfo").validate({
+    rules: {
+      required: 'required',
+      firstName: 'required',
+      email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      required: '',
+      firstName: '',
+      email: '',
+    },
+    submitHandler: function (form) {
+      // form.submit();
+      $(".first-form-step").addClass("hidden");
+      $(".second-form-step").addClass("active");
+      $(".form-head .item-personal").removeClass("active");
+      $(".form-head .item-billing").addClass("active");
+      $(".form-head").addClass("billing-step");
+    }
+  })
+
+
 
 });
