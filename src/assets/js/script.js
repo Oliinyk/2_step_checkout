@@ -1,20 +1,6 @@
 $(document).ready(function () {
-
   let input = document.querySelector("#phone");
-  window.intlTelInput(input, {
-    // allowDropdown: false,
-    // autoHideDialCode: false,
-    // autoPlaceholder: "off",
-    // dropdownContainer: document.body,
-    // excludeCountries: ["us"],
-    // formatOnDisplay: false,
-        // hiddenInput: "full_number",
-    // localizedCountries: { 'de': 'Deutschland' },
-    // nationalMode: false,
-    // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-    // placeholderNumberType: "MOBILE",
-    // preferredCountries: ['cn', 'jp'],
-    
+  window.intlTelInput(input, {  
     initialCountry: "auto",
     geoIpLookup: function(callback) {
       $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
