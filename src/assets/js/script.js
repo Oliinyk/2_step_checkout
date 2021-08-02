@@ -8,7 +8,7 @@ $(document).ready(function () {
         callback(countryCode);
       });
     },
-    utilsScript: "assets/js/utils.js",
+    // utilsScript: "assets/js/utils.js",
     separateDialCode: true
   });
 
