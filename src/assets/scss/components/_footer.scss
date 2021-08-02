@@ -1,0 +1,28 @@
+.footer {
+	margin: 50px 0 0;
+	.inner-wrap {
+		max-width: 775px;
+		margin: 0 auto;
+	}
+	.list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		max-width: 400px;
+		margin: 15px auto 25px;
+		a {
+			text-decoration: underline;
+			font-size: 12px;
+			color: rgb(78, 78, 78);
+			line-height: 1.5;
+		}
+	}
+	p {
+		font-size: 12px;
+		color: rgb(78, 78, 78);
+		margin: 0 0 15px;
+	}
+	.copyright {
+		margin: 30px 0;
+	}
+}

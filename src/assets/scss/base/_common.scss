@@ -1,0 +1,129 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  outline: none !important;
+}
+iframe,
+object,
+embed {
+  border: none;
+  width: 100%;
+}
+textarea,
+input {
+  -webkit-appearance: none;
+}
+img {
+  image-orientation: from-image;
+}
+html,
+body {
+  background-color: #fff;
+  max-width: 100%;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  color: #000;
+  margin: 0;
+}
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  transition: all 0.25s;
+  text-decoration: none;
+  outline: none;
+}
+button,
+button:hover,
+.btn,
+.btn:hover {
+  transition: all 0.25s;
+  outline: none;
+  line-height: 1;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto; 
+  padding-right: 15px;
+  padding-left: 15px;
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+}
+.container-fluid {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto; 
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.row {
+    display: flex;
+    margin-right: -15px;
+    margin-left: -15px; 
+    flex-wrap: wrap;
+}
+.col {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.btn {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0px 0px 1px 0px #00000040;
+  border-radius: 3px;
+  padding: 22px 15px;
+  cursor: pointer;
+}
+.btn-danger {
+  background-color: rgb(211, 105, 105);
+  border: 1px solid rgb(189, 96, 96);
+  &:hover {
+    background-color: rgb(237, 117, 117);
+  }
+}
+.paypal-btn {
+  border-color: rgb(66, 127, 191);
+  background-color: rgb(59, 123, 191);
+  text-align: center;
+  p {
+    margin: 0;
+  }
+  img {
+    vertical-align: middle;
+  }
+  .small-text {
+    font-size: 13px;
+    color: rgb(214, 218, 223);
+    font-weight: 300;
+  }
+  &:hover {
+    background-color: rgb(97, 155, 217);
+  }
+}
+.text-center {
+  text-align: center;
+}
+.hidden {
+  display: none !important;
+}

@@ -1,0 +1,28 @@
+.sponsors-widget {
+	background-color: rgb(246, 243, 243);
+	padding: 50px 0;
+	.inner-wrap {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		img {
+			&:nth-child(1) {
+				max-width: 173px;
+			}
+			&:nth-child(2) {
+				max-width: 190px;
+			}
+			&:nth-child(3) {
+				max-width: 29px;
+			}
+			&:nth-child(4) {
+				max-width: 251px;
+			}
+			&:nth-child(5) {
+				max-width: 96px;
+			}
+		}
+		
+	}
+}

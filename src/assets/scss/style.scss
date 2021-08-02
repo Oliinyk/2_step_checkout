@@ -1,0 +1,14 @@
+// variables and mixins
+@import "base/variables";
+
+// common styles
+@import "base/common";
+
+//components
+@import "components/header",
+		"components/title-widget",
+		"components/form-widget",
+		"components/text-col-widget",
+		"components/sponsors-widget",
+		"components/footer";
+

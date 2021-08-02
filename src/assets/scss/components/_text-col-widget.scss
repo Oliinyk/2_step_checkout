@@ -1,0 +1,38 @@
+.text-col-widget {
+	.inner-wrap {
+		padding: 0 10px;
+	}
+	.img-holder {
+		margin-top: -50px;
+		img {
+			max-width: 100%;
+		}
+	}
+	.title {
+		font-size: 28px;
+		font-weight: 700;
+		margin: 0;
+		span {
+			text-decoration: underline;
+		}
+	}
+	.list {
+		margin: 30px 0 50px;
+		li {
+			font-size: 18px;
+			color: rgb(0, 0, 0);
+			font-weight: 700;
+			margin-bottom: 10px;
+			span {
+				color: rgb(196, 88, 88);
+				margin-right: 20px;
+			}
+		}
+	}
+	.bottom-holder {
+		text-align: center;
+		img {
+			margin: 10px 0;
+		}
+	}
+}
