@@ -8,17 +8,14 @@ $(document).ready(function () {
     // dropdownContainer: document.body,
     // excludeCountries: ["us"],
     // formatOnDisplay: false,
+        // hiddenInput: "full_number",
+    // localizedCountries: { 'de': 'Deutschland' },
+    // nationalMode: false,
+    // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+    // placeholderNumberType: "MOBILE",
+    // preferredCountries: ['cn', 'jp'],
     
     initialCountry: "auto",
-    // geoIpLookup: function(callback) {
-    //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-    //     var countryCode = (resp && resp.country) ? resp.country : "";
-    //     callback(countryCode);
-
-    //     console.log(countryCode)
-    //   });
-    // },
-
     geoIpLookup: function(callback) {
       $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
         var countryCode = (resp && resp.country) ? resp.country : "us";
@@ -26,31 +23,8 @@ $(document).ready(function () {
       });
     },
     utilsScript: "assets/js/utils.js",
-    // https://pro.ip-api.com/json/?fields=status,countryCode&key=aM3qNyuQeQg7p0t
-
-    // t.getJSON("https://pro.ip-api.com/json/?fields=status,countryCode&key=aM3qNyuQeQg7p0t", function(e) {
-    //         if ("success" == e.status) {
-    //             console.log(e);
-    //             var o = e.countryCode.toLowerCase()
-    //               , n = t(".flag-container .country-list li[data-country-code=" + o + "]");
-    //             void 0 != n && l(n),
-    //             t(".amazon-bestseller .col-lg-12").prepend(t('<p>Exclusive Offer For: <span class="iti-flag ' + o + '" style="display: inline-block;"></span></p>'))
-    //         }
-    //     }),
-
-
-    // hiddenInput: "full_number",
-    // initialCountry: "auto",
-    // localizedCountries: { 'de': 'Deutschland' },
-    // nationalMode: false,
-    // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-    // placeholderNumberType: "MOBILE",
-    // preferredCountries: ['cn', 'jp'],
     separateDialCode: true
-
   });
-
-
 
   $(document).on("click", ".backBtnJs", function (e) {
     e.preventDefault();
@@ -68,7 +42,6 @@ $(document).ready(function () {
     let thisVal = $(this).closest('.form-check').find('input').val();
     $(".amountTotalJs").text(thisVal);
   });
-
 
   $(".validateJsInfo").validate({
     rules: {
@@ -93,7 +66,5 @@ $(document).ready(function () {
       $(".form-head").addClass("billing-step");
     }
   })
-
-
 
 });
