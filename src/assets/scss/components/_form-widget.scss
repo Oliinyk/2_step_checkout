@@ -141,7 +141,7 @@
 	}
 
 	.second-form-step {
-		display: none;
+		// display: none;
 		&.active {
 			display: block;
 		}
@@ -258,4 +258,8 @@
 			}
 		}
 	}
+}
+
+#card-element {
+	width: 100%;
 }

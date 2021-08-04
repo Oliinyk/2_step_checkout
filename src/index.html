@@ -16,8 +16,6 @@
 	<link rel="stylesheet" href="assets/css/style.css" />
 	<!-- endbuild -->
 	<!-- build:js assets/js/all.js defer -->
-	
-	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 	<script src="assets/js/plugins.js"></script>
 	<script src="assets/js/intlTelInput.js"></script>
 	<script src="assets/js/script.js"></script>
@@ -65,7 +63,6 @@
 									<p>Card details</p>
 								</div>
 							</div>
-
 							<form class="first-form-step validateJsInfo">
 								<div class="form-body">
 									<div class="">
@@ -125,9 +122,9 @@
 										<div class="form-group">
 											<label for="phoneInput" class="form-label">Credit Card Number*</label>
 		  									<div class="form-control form-control-group">
-		  										<input type="text" name="" class="form-control-inner" placeholder="Card number">
-		  										<input type="text" name="" class="form-control-inner" placeholder="MM/YY">
-		  										<input type="text" name="" class="form-control-inner" placeholder="CVC">
+		  										<input type="text" name="" class="form-control-inner" placeholder="Card number" id="card_number">
+		  										<input type="text" name="" class="form-control-inner" placeholder="MM/YY" id="ex_month">
+		  										<input type="text" name="" class="form-control-inner" placeholder="CVC" id="cvc">
 		  									</div>
 										</div>
 										<div class="t-foot">
@@ -139,8 +136,8 @@
 											<p class="amount-col">US<span class="amountTotalJs"></span></p>
 										</div>
 										<div class="form-group">
-											<button type="button" class="btn btn-danger stepsBtnJs">Get Instant Access Now</button>
-											<p class="small-text">*Payments are secured with 24-bit encryption*</p>
+											<button type="button" class="btn btn-danger stepsBtnJs" id="paynow">Get Instant Access Now</button>
+											<p class="small-text">*Payments are secured with 256-bit encryption*</p>
 										</div>
 									</div>
 								</div>
