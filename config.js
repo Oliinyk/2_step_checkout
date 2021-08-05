@@ -48,7 +48,6 @@ var critical = {
   height: 1000
 }
 
-
 module.exports = {
     critical: critical,
     devPaths: devPaths,

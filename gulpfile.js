@@ -1,4 +1,4 @@
-const { watch, series, src, dest,parallel } = require('gulp');
+const { watch, series, src, dest, parallel } = require('gulp');
 const browserSync  = require('browser-sync').create();
 const reload       = browserSync.reload;
 const concat       = require('gulp-concat');
@@ -8,12 +8,14 @@ const gulpIf       = require('gulp-if');
 const cssnano      = require('gulp-cssnano');
 const useref       = require('gulp-useref');
 const uglify       = require('gulp-uglify')
-const imagemin       = require('gulp-imagemin')
+const imagemin     = require('gulp-imagemin')
 const config       = require('./config.js');
 const webp         = require('gulp-webp');
 var jpegRecompress = require('imagemin-jpeg-recompress');
 var cache          = require('gulp-cache')
 const list_plugins = require('./list_plugins.js');
+require('dotenv').config();
+const replace = require('gulp-replace');
 function webp_clean(cb) {
     del.sync(config.basepath+config.devPaths.images + 'webp');
     cb();
@@ -91,6 +93,8 @@ function html_change(cb) {
     console.log(config.basepath + '**/*.html');
     src(config.basepath + '**/*.html')
         .pipe(dest(config.distPaths.html));
+    src(config.basepath + '../php/*.php')
+        .pipe(dest(config.distPaths.html));
     cb();
 }
 function browser_sync(cb) {
@@ -110,7 +114,7 @@ function watch_change() {
     watch(config.basepath+config.devPaths.css+'**/*.css', series(css,  browser_sync_refresh));
     watch(config.basepath+config.devPaths.scripts+'**/*.js', series(javascript,  browser_sync_reload));
     // watch('./list_plugins.js', series(pluginsScripts,  browser_sync_reload));
-    watch(config.basepath+"**/*.html", series(html_change, browser_sync_reload ));
+    watch(config.basepath+"**/*.html", series(html_change, addEnvVars, browser_sync_reload ));
     watch(config.basepath+config.devPaths.images + '**/*.{png,jpg,jpeg,svg,webp}', series(images_clean,webp_clean, convertImageToWebpdevPaths, images, images_webp ));
     watch(config.basepath+config.devPaths.fonts+"**/*.{woff,woff2,otf,ttf}", fonts);
     // watch(config.basepath+config.devPaths.images + '**/*.webp', images_webp);
@@ -137,5 +141,13 @@ function images() {
         ])))
         .pipe(dest(config.distPaths.images))
 }
-exports.default = series(clean, webp_clean, convertImageToWebpdevPaths, images, images_webp, fonts, html_change,pluginsScripts, javascript, sass_tocss, css, browser_sync, watch_change);
-exports.build = series(clean, webp_clean, convertImageToWebp, images, images_webp, fonts, html_change,pluginsScripts, javascript, sass_tocss, css, html_build,images_build,fonts_build);
+function addEnvVars() {
+    return src(config.distPaths.html + 'index.html')
+        .pipe(replace('ENV_VARS_CONTENT', JSON.stringify({
+            STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
+            SERVER_ENDPOINT: process.env.SERVER_ENDPOINT
+        })))
+        .pipe(dest(config.distPaths.html));
+};
+exports.default = series(clean, webp_clean, convertImageToWebpdevPaths, images, images_webp, fonts, html_change,pluginsScripts, javascript, sass_tocss, css, addEnvVars, browser_sync, watch_change);
+exports.build = series(clean, webp_clean, convertImageToWebp, images, images_webp, fonts, html_change, pluginsScripts, javascript, sass_tocss, css, html_build, images_build, fonts_build, addEnvVars);

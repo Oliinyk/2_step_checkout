@@ -1,0 +1,7 @@
+{
+	"name" : "oliinyk/2_step_checkout",
+	"require" : {
+		"stripe/stripe-php": "^7.92",
+		"vlucas/phpdotenv": "^5.3"
+	}
+}

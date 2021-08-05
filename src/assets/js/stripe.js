@@ -1,29 +1,20 @@
 jQuery(document).ready(function ($) {
     // A reference to Stripe.js initialized with your real test publishable API key.
-    var stripe = Stripe("pk_test_NOh5ZTfJa0OCgyEdQ8XSl0br");
-
-    // The items the customer wants to buy
-    var purchase = {
-      items: [{ id: "xl-tshirt" }]
-    };
-    
-    var json = {"clientSecret": "pi_3JKmyTEAC6EBm7sn0ucvoAIy_secret_4KIdQDHMXLWnzt3wg4LFdjaR2"};
+    var stripe = Stripe(ENV_VARS.STRIPE_PUBLIC_KEY);
 
     // Disable the button until we have Stripe set up on the page
     document.querySelector("#strapiBtn").disabled = true;
-    fetch("/index.html", {
+    fetch(ENV_VARS.SERVER_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(purchase)
+      body: JSON.stringify({items: []})
     })
       .then(function(result) {
-        return json;
         return result.json();
       })
       .then(function(data) {
-        data = json;
         var elements = stripe.elements();
 
         var style = {
@@ -88,13 +79,13 @@ jQuery(document).ready(function ($) {
     // Shows a success message when the payment is complete
     var orderComplete = function(paymentIntentId) {
       loading(false);
-      document
+      /*document
         .querySelector(".result-message a")
         .setAttribute(
           "href",
           "https://dashboard.stripe.com/test/payments/" + paymentIntentId
         );
-      document.querySelector(".result-message").classList.remove("hidden");
+      document.querySelector(".result-message").classList.remove("hidden");*/
       document.querySelector("#strapiBtn").disabled = true;
     };
 
@@ -113,12 +104,12 @@ jQuery(document).ready(function ($) {
       if (isLoading) {
         // Disable the button and show a spinner
         document.querySelector("#strapiBtn").disabled = true;
-        document.querySelector("#spinner").classList.remove("hidden");
-        document.querySelector("#button-text").classList.add("hidden");
+        // document.querySelector("#spinner").classList.remove("hidden");
+        // document.querySelector("#button-text").classList.add("hidden");
       } else {
         document.querySelector("#strapiBtn").disabled = false;
-        document.querySelector("#spinner").classList.add("hidden");
-        document.querySelector("#button-text").classList.remove("hidden");
+        // document.querySelector("#spinner").classList.add("hidden");
+        // document.querySelector("#button-text").classList.remove("hidden");
       }
     };
     
