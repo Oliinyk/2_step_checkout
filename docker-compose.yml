@@ -13,3 +13,11 @@ services:
     volumes:
       - ./:/var/www
       - ./10-php.conf:/opt/docker/etc/nginx/vhost.common.d/10-php.conf
+
+  composer:
+    restart: 'no'
+    image: composer/composer
+    command: install
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
