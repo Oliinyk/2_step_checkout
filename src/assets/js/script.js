@@ -1,9 +1,9 @@
 $(document).ready(function () {
   let input = document.querySelector("#phone");
-  window.intlTelInput(input, {  
+  window.intlTelInput(input, {
     initialCountry: "auto",
-    geoIpLookup: function(callback) {
-      $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+    geoIpLookup: function (callback) {
+      $.get('https://ipinfo.io', function () { }, "jsonp").always(function (resp) {
         var countryCode = (resp && resp.country) ? resp.country : "us";
         callback(countryCode);
       });
@@ -21,7 +21,7 @@ $(document).ready(function () {
     $(".form-head").removeClass("billing-step");
   });
 
-  let checkedVal= $(".radio-group-options input[type='radio']:checked").val();
+  let checkedVal = $(".radio-group-options input[type='radio']:checked").val();
   $(".amountTotalJs").text(checkedVal);
 
   $(document).on("click", ".form-check .form-check-label, .form-check .form-check-input", function () {
