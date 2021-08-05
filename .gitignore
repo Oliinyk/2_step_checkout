@@ -11,3 +11,5 @@ package-lock.json
 */.DS_Store
 /vendor
 /.env
+build/
+build/*
