@@ -13,3 +13,4 @@ package-lock.json
 /.env
 build/
 build/*
+/build
