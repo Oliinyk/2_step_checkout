@@ -53,4 +53,16 @@ $(document).ready(function () {
     }
   })
 
+  // Submiting PayPal form
+  $('#paypal-form .paypal-btn').click(function () {
+    let email = $('.first-form-step #emailInput').val();
+    let name = $('.first-form-step #nameInput').val();
+
+    $('#paypal-form input[name=email]').val(email);
+    $('#paypal-form input[name=first_name]').val(name);
+
+    $('#paypal-form').submit();
+    return false;
+  });
+
 });
