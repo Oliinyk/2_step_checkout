@@ -40,6 +40,7 @@ $(document).ready(function () {
     $(".form-head .item-personal").removeClass("active");
     $(".form-head .item-billing").addClass("active");
     $(".form-head").addClass("billing-step");
+    $(".paypal-form").removeClass("hidden");
 
     var form = document.getElementById('_form_' + id + '_'), thank_you = form.querySelector('._form-thank-you');
     form.querySelector('._form-content').style.display = 'none';
