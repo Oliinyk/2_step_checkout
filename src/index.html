@@ -10,6 +10,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Roboto&display=swap"
+		rel="stylesheet">
 	<script src="https://js.stripe.com/v3/"></script>
 
 	<script>
@@ -71,29 +73,53 @@
 									<p>Card details</p>
 								</div>
 							</div>
-							<form class="first-form-step validateJsInfo">
+
+							<!-- activecampaign -->
+							<form method="POST" action="https://i909.activehosted.com/proc.php" id="_form_1_"
+								class="first-form-step _form _form_1 _inline-form  _dark" novalidate>
 								<div class="form-body">
-									<div class="">
+									<input type="hidden" name="u" value="1" />
+									<input type="hidden" name="f" value="1" />
+									<input type="hidden" name="s" />
+									<input type="hidden" name="c" value="0" />
+									<input type="hidden" name="m" value="0" />
+									<input type="hidden" name="act" value="sub" />
+									<input type="hidden" name="v" value="2" />
+
+									<div class="_form-content">
 										<p class="form-designation">* Denotes mandatory fields</p>
+
 										<div class="form-group">
-											<label for="nameInput" class="form-label">Full name*</label>
-											<input type="text" class="form-control" id="nameInput"
-												placeholder="Full name..." name="firstName">
+											<label for="fullname" class="form-label">
+												Full name*
+											</label>
+											<input type="text" class="form-control" id="fullname" name="fullname"
+												placeholder="Type your name" required />
 										</div>
 										<div class="form-group">
-											<label for="emailInput" class="form-label">Email*</label>
-											<input type="email" class="form-control" id="emailInput"
-												placeholder="Email address..." name="email">
+											<label for="email" class="form-label">
+												Email*
+											</label>
+											<input type="text" class="form-control" id="email" name="email"
+												placeholder="Type your email" required />
 										</div>
 										<div class="form-group">
-											<label for="phoneInput" class="form-label">Phone number*</label>
-											<input type="tel" id="phone" class="form-control" name="required">
+											<label for="phone" class="form-label">
+												Phone number*
+											</label>
+											<input type="text" class="form-control" id="phone" name="phone"
+												placeholder="Type your phone number" required />
 										</div>
 										<div class="form-group">
-											<button type="submit" class="btn btn-danger stepsBtnJs">Go To Step
-												#2</button>
+											<button id="_form_1_submit" class="btn btn-danger _submit" type="submit">
+												Go To Step #2
+											</button>
 											<p class="small-text">We respect your privacy & information</p>
 										</div>
+
+										<div class="_clear-element"></div>
+									</div>
+									<div class="_form-thank-you" style="display:none;">
 									</div>
 								</div>
 							</form>
@@ -101,71 +127,70 @@
 							<form class="second-form-step validateJsBilling" id="payment-form">
 								<div class="form-body">
 									<div class="">
-										<a href="#" class="back-btn backBtnJs">
-											< Name and email</a>
-												<div class="t-head">
-													<p>Item</p>
-													<p>Price</p>
+										<!-- <a href="#" class="back-btn backBtnJs">
+											< Name and email</a> -->
+										<div class="t-head">
+											<p>Item</p>
+											<p>Price</p>
+										</div>
+										<div class="radio-group-options">
+											<div class="form-check-row">
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="flexRadioDefault"
+														id="radioOneTime" value="$1,497" checked>
+													<label class="form-check-label" for="radioOneTime">
+														Beauty Boss 2.0 - One-time payment
+													</label>
 												</div>
-												<div class="radio-group-options">
-													<div class="form-check-row">
-														<div class="form-check">
-															<input class="form-check-input" type="radio"
-																name="flexRadioDefault" id="radioOneTime" value="$1,497"
-																checked>
-															<label class="form-check-label" for="radioOneTime">
-																Beauty Boss 2.0 - One-time payment
-															</label>
-														</div>
-														<div class="form-price">
-															<p>US$1,497</p>
-														</div>
-													</div>
-													<div class="form-check-row">
-														<div class="form-check">
-															<input class="form-check-input" type="radio"
-																name="flexRadioDefault" id="radioPayment" value="$797">
-															<label class="form-check-label" for="radioPayment">
-																Beauty Boss 2.0 - Payment plan
-															</label>
-														</div>
-														<div class="form-price">
-															<p>3x installments of US$797</p>
-														</div>
-													</div>
+												<div class="form-price">
+													<p>US$1,497</p>
 												</div>
-												<div class="form-group">
-													<label for="phoneInput" class="form-label">Credit Card
-														Number*</label>
-													<div class="form-control form-control-group">
-														<div id="card-element">
-															<!--Stripe.js injects the Card Element-->
-														</div>
-													</div>
+											</div>
+											<div class="form-check-row">
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="flexRadioDefault"
+														id="radioPayment" value="$797">
+													<label class="form-check-label" for="radioPayment">
+														Beauty Boss 2.0 - Payment plan
+													</label>
 												</div>
-												<p class="card-error" id="card-error" role="alert"></p>
+												<div class="form-price">
+													<p>3x installments of US$797</p>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="phoneInput" class="form-label">Credit Card
+												Number*</label>
+											<div class="form-control form-control-group">
+												<div id="card-element">
+													<!--Stripe.js injects the Card Element-->
+												</div>
+											</div>
+										</div>
+										<p class="card-error" id="card-error" role="alert"></p>
 
-												<div class="t-foot">
-													<p>Item</p>
-													<p>amount</p>
-												</div>
-												<div class="amount-row">
-													<p></p>
-													<p class="amount-col">US<span class="amountTotalJs"></span></p>
-												</div>
-												<div class="form-group">
-													<button type="submit" class="btn btn-danger strapiBtn"
-														id="strapiBtn"><span class="spinner hidden"></span><span
-															class="button-text">Get Instant Access Now</span></button>
+										<div class="t-foot">
+											<p>Item</p>
+											<p>amount</p>
+										</div>
+										<div class="amount-row">
+											<p></p>
+											<p class="amount-col">US<span class="amountTotalJs"></span></p>
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-danger strapiBtn" id="strapiBtn"><span
+													class="spinner hidden"></span><span class="button-text">Get Instant
+													Access Now</span></button>
 
-													<!-- result message -->
-													<div class="result-message hidden">
-														<a href="#">Success</a>
-													</div>
+											<!-- result message -->
+											<div class="result-message hidden">
+												<a href="#">Success</a>
+											</div>
 
-													<p class="small-text">*Payments are secured with 24-bit encryption*
-													</p>
-												</div>
+											<p class="small-text">*Payments are secured with 24-bit encryption*
+											</p>
+										</div>
 									</div>
 								</div>
 							</form>
