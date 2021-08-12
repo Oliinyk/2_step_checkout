@@ -414,14 +414,60 @@ $(document).ready(function () {
 
   // Submiting PayPal form
   $('#paypal-form .paypal-btn').click(function () {
-    let email = $('.first-form-step #emailInput').val();
-    let name = $('.first-form-step #nameInput').val();
+    // Load user data
+    let pp_userdata = get_userdata();
 
-    $('#paypal-form input[name=email]').val(email);
-    $('#paypal-form input[name=first_name]').val(name);
+    $('#paypal-form input[name=email]').val(pp_userdata.email);
+    $('#paypal-form input[name=first_name]').val(pp_userdata.name);
+    $('#paypal-form input[name=night_phone_a]').val(pp_userdata.phone1);
+    $('#paypal-form input[name=night_phone_b]').val(pp_userdata.phone2);
 
     $('#paypal-form').submit();
     return false;
   });
+
+  $('#_form_1_submit').click(function () {
+    // Saving user data
+    collect_userdata();
+  });
+
+
+  $('#go-to-paypal').click(function () {
+    // Saving user data
+    collect_userdata();
+  });
+
+  // Saving user data to local storage for use on other pages
+  function collect_userdata() {
+    let email = $('.first-form-step #email').val();
+    let name = $('.first-form-step #fullname').val();
+    let phone1 = $('.iti__selected-dial-code').text();
+    let phone2 = $('.first-form-step #phone').val();
+
+    const pp_userdata = {
+      email: email,
+      name: name,
+      phone1: phone1,
+      phone2: phone2
+    }
+
+    window.localStorage.setItem('pp_userdata', JSON.stringify(pp_userdata));
+  }
+
+  function get_userdata() {
+    return JSON.parse(window.localStorage.getItem('pp_userdata'));
+  }
+
+  if ($('#paypal-form')) {
+    // Load user data
+    let pp_userdata = get_userdata();
+
+    $('.first-form-step #email').val(pp_userdata.email);
+    $('.first-form-step #fullname').val(pp_userdata.name);
+    if (pp_userdata.phone1) {
+      iti.setNumber(pp_userdata.phone1+pp_userdata.phone2);
+    }
+    $('.first-form-step #phone').val(pp_userdata.phone2);
+  }
 
 });
