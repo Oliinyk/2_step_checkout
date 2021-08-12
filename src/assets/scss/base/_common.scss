@@ -112,8 +112,12 @@ ul {
   border-color: rgb(66, 127, 191);
   background-color: rgb(59, 123, 191);
   text-align: center;
+  display: block;
   p {
     margin: 0;
+  }
+  span {
+    display: block;
   }
   img {
     vertical-align: middle;
@@ -125,6 +129,7 @@ ul {
   }
   &:hover {
     background-color: rgb(97, 155, 217);
+    color: #fff;
   }
 }
 .text-center {

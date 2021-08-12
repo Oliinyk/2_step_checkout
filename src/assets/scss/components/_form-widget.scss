@@ -1,5 +1,23 @@
 .form-widget {
-  margin-bottom: 70px;
+  padding: 70px 0;
+  position: relative;
+  overflow: hidden;
+  .bg-head, .bg-foot {
+    position: absolute;
+    width: 480px;
+  }
+  .bg-head {
+    top: 50px;
+    left: -180px;
+  }
+  .bg-foot {
+    bottom: -110px;
+    right: -100px;
+  }
+  .container {
+    position: relative;
+    z-index: 2;
+  }
   .col {
     width: 50%;
     @media (max-width: 991px) {
@@ -109,8 +127,21 @@
       padding: 15px;
       width: 100%;
     }
+    // .phone-orig {
+    //   position: absolute;
+    //   right: 0px;
+    //   top: 100%;
+    // }
+    // .phone-dis {
+    //   position: absolute;
+    //   right: 0;
+    //   bottom: 0;
+    //   width: calc(100% - 100px);
+    //   z-index: 2;
+    // }
     .iti--allow-dropdown {
       display: flex;
+      height: 48px;
       width: 100%;
       .form-control {
         width: calc(100% - 100px);
@@ -137,15 +168,30 @@
       position: relative;
       height: 71px;
     }
+    .paypal-btn {
+      height: auto;
+    }
     .small-text {
       font-size: 12px;
       font-weight: 100;
       text-align: center;
     }
   }
+  .paypal-holder {
+    .join-text {
+      font-weight: 200;
+    }
+  }
+  .checkout-paypal-holder {
+    margin: 50px 0 0;
+  }
   .join-text {
     text-align: center;
     margin: 10px 0;
+    font-weight: 300;
+    a {
+      text-decoration: underline;
+    }
   }
 
   .second-form-step {
@@ -157,7 +203,7 @@
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid rgb(226, 226, 226);
-      margin: 15px 0 10px;
+      margin: 25px 0 10px;
       padding: 0 0 5px;
       p {
         margin: 0;
@@ -184,13 +230,14 @@
       p {
         margin: 0;
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 400;
       }
     }
   }
   .back-btn {
     text-decoration: underline;
     font-size: 11px;
+    font-weight: 300;
     color: rgb(114, 114, 114);
   }
   .radio-group-options {
@@ -245,7 +292,7 @@
   }
   .form-price {
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     p {
       margin: 0;
     }
@@ -286,20 +333,17 @@
   border-radius: 3px;
 }
 
-._form-branding {
-  display: none;
+.phone-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
 }
 
-
-
-
-
-
-
-
-
-
-
+// ._form-branding {
+//   display: none;
+// }
 //  #_form_1_ { font-size:14px; line-height:1.6; font-family:arial, helvetica, sans-serif; margin:0; }
 //  #_form_1_ * { outline:0; }
 //  ._form_hide { display:none; visibility:hidden; }

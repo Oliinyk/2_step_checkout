@@ -4,6 +4,11 @@
 		max-width: 775px;
 		margin: 0 auto;
 	}
+	.img-holder {
+		img {
+			max-width: 122px;
+		}
+	}
 	.list {
 		display: flex;
 		flex-wrap: wrap;
@@ -19,6 +24,7 @@
 	}
 	p {
 		font-size: 12px;
+		font-weight: 300;
 		color: rgb(78, 78, 78);
 		margin: 0 0 15px;
 	}

@@ -12,24 +12,35 @@ $(document).ready(function () {
     separateDialCode: true
   });
 
-  // $(document).on("click", ".backBtnJs", function (e) {
-  //   e.preventDefault();
-  //   $(".second-form-step").removeClass("active");
-  //   $(".first-form-step").removeClass("hidden");
-  //   $(".form-head .item-personal").addClass("active");
-  //   $(".form-head .item-billing").removeClass("active");
-  //   $(".form-head").removeClass("billing-step");
-  // });
-
-  let checkedVal = $(".radio-group-options input[type='radio']:checked").val();
-  $(".amountTotalJs").text(checkedVal);
-
-  $(document).on("click", ".form-check .form-check-label, .form-check .form-check-input", function () {
-    let thisVal = $(this).closest('.form-check').find('input').val();
-    $(".amountTotalJs").text(thisVal);
+  $('#phone').on('input', function () {
+    $('.phoneHiddenJs').val('(' + $('.iti__selected-dial-code').text() + ') ' + $('.phone-dis').val());
+  })
+  input.addEventListener("countrychange", function () {
+    $('.phoneHiddenJs').val('(' + $('.iti__selected-dial-code').text() + ') ' + $('.phone-dis').val());
   });
 
 
+
+  $(document).on("click", ".backBtnJs", function (e) {
+    e.preventDefault();
+    $(".second-form-step").removeClass("active");
+    $(".first-form-step").removeClass("hidden");
+    $(".form-head .item-personal").addClass("active");
+    $(".form-head .item-billing").removeClass("active");
+    $(".form-head").removeClass("billing-step");
+    document.querySelector('#_form_1_submit').disabled = false;
+  });
+
+  let checkedVal = $(".radio-group-options input[type='radio']:checked").val();
+  let checkedTitle = $(".radio-group-options input[type='radio']:checked ~ .form-check-label").text();
+  $(".amountTotalJs").text(checkedVal);
+  $(".titleTotalJs").text(checkedTitle);
+  $(document).on("click", ".form-check .form-check-label, .form-check .form-check-input", function () {
+    let thisVal = $(this).closest('.form-check').find('input').val();
+    let thisTitle = $(this).closest('.form-check').find('.form-check-label').text();
+    $(".amountTotalJs").text(thisVal);
+    $(".titleTotalJs").text(thisTitle);
+  });
 
   // activecampaign
   window.cfields = [];
@@ -40,12 +51,13 @@ $(document).ready(function () {
     $(".form-head .item-personal").removeClass("active");
     $(".form-head .item-billing").addClass("active");
     $(".form-head").addClass("billing-step");
-    $(".paypal-form").removeClass("hidden");
 
-    var form = document.getElementById('_form_' + id + '_'), thank_you = form.querySelector('._form-thank-you');
-    form.querySelector('._form-content').style.display = 'none';
-    thank_you.innerHTML = message;
-    thank_you.style.display = 'block';
+    $(".paypalChecoutJs").removeClass("hidden");
+
+    // var form = document.getElementById('_form_' + id + '_'), thank_you = form.querySelector('._form-thank-you');
+    // form.querySelector('._form-content').style.display = 'none';
+    // thank_you.innerHTML = message;
+    // thank_you.style.display = 'block';
     const vgoAlias = typeof visitorGlobalObjectAlias === 'undefined' ? 'vgo' : visitorGlobalObjectAlias;
     var visitorObject = window[vgoAlias];
     if (email && typeof visitorObject !== 'undefined') {
@@ -362,6 +374,18 @@ $(document).ready(function () {
     };
     addEvent(form_to_submit, 'submit', form_submit);
   })();
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Submiting PayPal form
   $('#paypal-form .paypal-btn').click(function () {

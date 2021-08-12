@@ -110,8 +110,8 @@
 												Phone number*
 											</label>
 
-											<input type="text" class="form-control phoneHiddenJs phone-hidden"
-												id="phone-send" name="phone" placeholder="Type your phone number" />
+											<input type="text" class="form-control phoneHiddenJs" id="phone-send"
+												name="phone" placeholder="Type your phone number" />
 
 
 											<input type="text" class="form-control" id="phone" name="phone"
@@ -169,16 +169,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="form-group">
-													<label for="phoneInput" class="form-label">Credit Card
-														Number*</label>
-													<div class="form-control form-control-group">
-														<div id="card-element">
-															<!--Stripe.js injects the Card Element-->
-														</div>
-													</div>
-												</div>
-												<p class="card-error" id="card-error" role="alert"></p>
+
 
 												<div class="t-foot">
 													<p>Item</p>
@@ -189,15 +180,42 @@
 													<p class="amount-col">US<span class="amountTotalJs"></span></p>
 												</div>
 												<div class="form-group">
-													<button type="submit" class="btn btn-danger strapiBtn"
-														id="strapiBtn"><span class="spinner hidden"></span><span
-															class="button-text">Get Instant
-															Access Now</span></button>
 
-													<!-- result message -->
-													<div class="result-message hidden">
-														<a href="#">Success</a>
-													</div>
+													<form id="paypal-form"
+														action="https://www.sandbox.paypal.com/cgi-bin/webscr"
+														method="post" name="form-pp"
+														class="paypal-form paypalChecoutJs hidden">
+														<input type="hidden" name="business" value="mahamai@rambler.ru">
+														<input type="hidden" name="first_name" value="">
+														<input type="hidden" name="email" value="">
+														<input type="hidden" name="image_url"
+															value="http://paypal.local/static/logo.png">
+														<input type="hidden" name="charset" value="utf8">
+														<input type="hidden" name="item_name" value="Beauty Boss 2.0">
+														<input type="hidden" name="item_number" value="1">
+														<input type="hidden" name="amount" value="1497">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="cmd" value="_xclick">
+														<input type="hidden" name="no_note" value="1">
+														<input type="hidden" name="no_shipping" value="1">
+														<input type="hidden" name="return"
+															value="http://10.10.10.10/payment-return.php">
+														<input type="hidden" name="rm" value="2">
+														<!-- This can be set in PayPal profile -->
+														<!-- <input type="hidden" name="notify_url" value="http://10.10.10.10/payment-listner.php"> -->
+														<input type="hidden" name="cancel_return"
+															value="http://10.10.10.10/payment-fail.php">
+														<div class="paypal-holder checkout-paypal-holder">
+															<div class="btn paypal-btn">
+																<p><img src="./assets/images/paypal-payment.png"
+																		alt="paypal-payment" /> Try PayPal
+																	Credit</p>
+																<p class="small-text">You'll be redirected to a PayPal
+																	checkout page.</p>
+															</div>
+															<p class="join-text">Join Now. Pay Later.</p>
+														</div>
+													</form>
 
 													<p class="small-text">*Payments are secured with 256-bit encryption*
 													</p>
@@ -207,43 +225,6 @@
 							</form>
 						</div>
 
-						<div class="paypal-holder">
-							<a href="paypal-checkout-1.html" class="btn paypal-btn">
-								<span><img src="./assets/images/paypal-payment.png" alt="paypal-payment" /> Try PayPal
-									Credit</span>
-								<span class="small-text">You'll be redirected to a PayPal checkout page.</span>
-							</a>
-							<p class="join-text">Join Now. Pay Later.</p>
-						</div>
-
-						<!-- <form id="paypal-form" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"
-							name="form-pp" class="paypal-form">
-							<input type="hidden" name="business" value="mahamai@rambler.ru">
-							<input type="hidden" name="first_name" value="">
-							<input type="hidden" name="email" value="">
-							<input type="hidden" name="image_url" value="http://paypal.local/static/logo.png">
-							<input type="hidden" name="charset" value="utf8">
-							<input type="hidden" name="item_name" value="Beauty Boss 2.0">
-							<input type="hidden" name="item_number" value="1">
-							<input type="hidden" name="amount" value="1497">
-							<input type="hidden" name="currency_code" value="USD">
-							<input type="hidden" name="cmd" value="_xclick">
-							<input type="hidden" name="no_note" value="1">
-							<input type="hidden" name="no_shipping" value="1">
-							<input type="hidden" name="return" value="http://10.10.10.10/payment-return.php">
-							<input type="hidden" name="rm" value="2"> -->
-						<!-- This can be set in PayPal profile -->
-						<!-- <input type="hidden" name="notify_url" value="http://10.10.10.10/payment-listner.php"> -->
-						<!-- <input type="hidden" name="cancel_return" value="http://10.10.10.10/payment-fail.php">
-							<div class="paypal-holder">
-								<div class="btn paypal-btn">
-									<p><img src="./assets/images/paypal-payment.png" alt="paypal-payment" /> Try PayPal
-										Credit</p>
-									<p class="small-text">You'll be redirected to a PayPal checkout page.</p>
-								</div>
-								<p class="join-text">Join Now. Pay Later.</p>
-							</div>
-						</form> -->
 					</div>
 				</article>
 
