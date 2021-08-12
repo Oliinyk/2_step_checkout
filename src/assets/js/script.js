@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  let input = document.querySelector("#phone");
+  let input = document.querySelector("#phone-send");
   window.intlTelInput(input, {
     initialCountry: "auto",
     geoIpLookup: function (callback) {
@@ -12,8 +12,15 @@ $(document).ready(function () {
     separateDialCode: true
   });
 
-  $('#phone').on('input', function () {
+  $('#phone-send').on('input', function () {
     $('.phoneHiddenJs').val('(' + $('.iti__selected-dial-code').text() + ') ' + $('.phone-dis').val());
+    if ($(this).val() > 0) {
+      $('.phone-dis').removeClass('_has_error');
+      $('.phone-dis').closest('.form-group').find('._error').remove();
+      document.querySelector('#_form_3_submit').disabled = false;
+    } else {
+      document.querySelector('#_form_3_submit').disabled = true;
+    }
   })
   input.addEventListener("countrychange", function () {
     $('.phoneHiddenJs').val('(' + $('.iti__selected-dial-code').text() + ') ' + $('.phone-dis').val());
@@ -28,7 +35,16 @@ $(document).ready(function () {
     $(".form-head .item-personal").addClass("active");
     $(".form-head .item-billing").removeClass("active");
     $(".form-head").removeClass("billing-step");
-    document.querySelector('#_form_1_submit').disabled = false;
+    document.querySelector('#_form_3_submit').disabled = false;
+  });
+
+  $(document).on("click", ".billing-step .item-personal", function (e) {
+    $(".second-form-step").removeClass("active");
+    $(".first-form-step").removeClass("hidden");
+    $(".form-head .item-personal").addClass("active");
+    $(".form-head .item-billing").removeClass("active");
+    $(".form-head").removeClass("billing-step");
+    document.querySelector('#_form_3_submit').disabled = false;
   });
 
   let checkedVal = $(".radio-group-options input[type='radio']:checked").val();
@@ -41,6 +57,7 @@ $(document).ready(function () {
     $(".amountTotalJs").text(thisVal);
     $(".titleTotalJs").text(thisTitle);
   });
+
 
   // activecampaign
   window.cfields = [];
@@ -126,7 +143,7 @@ $(document).ready(function () {
       }
     }
     var _removed = false;
-    var form_to_submit = document.getElementById('_form_1_');
+    var form_to_submit = document.getElementById('_form_3_');
     var allInputs = form_to_submit.querySelectorAll('input, select, textarea'), tooltips = [], submitted = false;
 
     var getUrlParam = function (name) {
@@ -199,7 +216,7 @@ $(document).ready(function () {
       var rect = tooltip.elem.getBoundingClientRect();
       var doc = document.documentElement, scrollPosition = rect.top - ((window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0));
       // if (scrollPosition < 40) {
-      // 	tooltip.tip.className = tooltip.tip.className.replace(/ ?(_above|_below) ?/g, '') + ' _below';
+      //   tooltip.tip.className = tooltip.tip.className.replace(/ ?(_above|_below) ?/g, '') + ' _below';
       // } else {
       tooltip.tip.className = tooltip.tip.className.replace(/ ?(_above|_below) ?/g, '') + ' _above';
       // }
@@ -364,11 +381,11 @@ $(document).ready(function () {
       e.preventDefault();
       if (validate_form()) {
         // use this trick to get the submit button & disable it using plain javascript
-        document.querySelector('#_form_1_submit').disabled = true;
-        var serialized = _form_serialize(document.getElementById('_form_1_')).replace(/%0A/g, '\\n');
+        document.querySelector('#_form_3_submit').disabled = true;
+        var serialized = _form_serialize(document.getElementById('_form_3_')).replace(/%0A/g, '\\n');
         var err = form_to_submit.querySelector('._form_error');
         err ? err.parentNode.removeChild(err) : false;
-        _load_script('https://i909.activehosted.com/proc.php?' + serialized + '&jsonp=true');
+        _load_script('https://alextjackson1.activehosted.com/proc.php?' + serialized + '&jsonp=true');
       }
       return false;
     };
@@ -377,11 +394,19 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
+  $(".first-form-step").submit(function (e) {
+    if ($('.phone-dis').val() < 1) {
+      document.querySelector('#_form_3_submit').disabled = true;
+      $('.phone-dis').addClass('_has_error');
+      $('.phone-dis').closest('.form-group').append('<div class="_error _above"><div class="_error-arrow"></div><div class="_error-inner">This field is required.</div></div>');
+      e.preventDefault();
+      // return false;
+    } else {
+      $('.phone-dis').removeClass(' _has_error');
+      $('.phone-dis').closest('.form-group').find('._error').remove();
+      document.querySelector('#_form_3_submit').disabled = false;
+    }
+  });
 
 
 
