@@ -15,7 +15,9 @@
 	<script src="https://js.stripe.com/v3/"></script>
 
 	<script>
-		const ENV_VARS = ENV_VARS_CONTENT
+		if (typeof ENV_VARS !== 'undefined') {
+			const ENV_VARS = ENV_VARS_CONTENT
+		}
 	</script>
 
 	<!-- build:css assets/css/all.css -->
@@ -189,7 +191,7 @@
 												<div class="form-group">
 
 													<form id="paypal-form"
-														action="https://www.sandbox.paypal.com/cgi-bin/webscr"
+														action="https://www.paypal.com/cgi-bin/webscr"
 														method="post" name="form-pp"
 														class="paypal-form paypalChecoutJs hidden">
 														<input type="hidden" name="business"
@@ -198,8 +200,6 @@
 														<input type="hidden" name="email" value="">
 														<input type="hidden" name="night_phone_a" value="">
 														<input type="hidden" name="night_phone_b" value="">
-														<input type="hidden" name="image_url"
-															value="http://paypal.local/static/logo.png">
 														<input type="hidden" name="charset" value="utf8">
 														<input type="hidden" name="item_name" value="Beauty Boss 2.0">
 														<input type="hidden" name="item_number" value="1">
@@ -208,13 +208,15 @@
 														<input type="hidden" name="cmd" value="_xclick">
 														<input type="hidden" name="no_note" value="1">
 														<input type="hidden" name="no_shipping" value="1">
+														<!--
+														<input type="hidden" name="image_url"
+															   value="https://www.paypal.com/static/logo.png">
 														<input type="hidden" name="return"
 															value="http://10.10.10.10/payment-return.php">
 														<input type="hidden" name="rm" value="2">
-														<!-- This can be set in PayPal profile -->
-														<!-- <input type="hidden" name="notify_url" value="http://10.10.10.10/payment-listner.php"> -->
 														<input type="hidden" name="cancel_return"
 															value="http://10.10.10.10/payment-fail.php">
+														-->
 														<div class="paypal-holder checkout-paypal-holder">
 															<div class="btn paypal-btn">
 																<p><img src="./assets/images/paypal-payment.png"
