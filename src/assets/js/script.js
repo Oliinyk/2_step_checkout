@@ -437,6 +437,10 @@ $(document).ready(function () {
     $('#paypal-form input[name=night_phone_b]').val(pp_userdata.phone2);
 
     $('#paypal-form').submit();
+
+    $('.hiddenFormJs ._form_7').submit();
+    console.log('Full Pay Members');
+
     return false;
   });
 

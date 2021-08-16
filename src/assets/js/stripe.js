@@ -86,10 +86,10 @@ jQuery(document).ready(function ($) {
           //emulate click on hidden form
           if ($(".radio-group-options input[type='radio']:checked").val() == '$1,497') {
             $('.hiddenFormJs ._form_7').submit();
-            // console.log('Full Pay Members');
+            console.log('Full Pay Members');
           } else {
             $('.hiddenFormJs ._form_9').submit();
-            // console.log('Payment Plan Members');
+            console.log('Payment Plan Members');
           }
 
         }
