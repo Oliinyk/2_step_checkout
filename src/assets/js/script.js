@@ -69,7 +69,23 @@ $(document).ready(function () {
     $(".form-head .item-billing").addClass("active");
     $(".form-head").addClass("billing-step");
 
+    // on checkout-1 page
     $(".paypalChecoutJs").removeClass("hidden");
+
+    //add value on hidden form
+    let nameVal = $('.first-form-step').find('input[name="fullname"]').val();
+    $(".hiddenFormJs").find('input[name="fullname"]').val(nameVal);
+    let mailVal = $('.first-form-step').find('input[name="email"]').val();
+    $(".hiddenFormJs").find('input[name="email"]').val(mailVal);
+    let phoneVal = $('.first-form-step').find('.phoneHiddenJs').val();
+    $(".hiddenFormJs").find('input[name="phone"]').val(phoneVal);
+
+    // $("#_form_7_").find('.priceHolderJs').val('$1,497');
+    // $("#_form_9_").find('.priceHolderJs').val('$797');
+
+    $("._form_7.hiddenFormJs").find('input[data-name="price"]').val('$1,497');
+    $("._form_9.hiddenFormJs").find('input[data-name="price"]').val('$797');
+
 
     // var form = document.getElementById('_form_' + id + '_'), thank_you = form.querySelector('._form-thank-you');
     // form.querySelector('._form-content').style.display = 'none';
@@ -393,13 +409,14 @@ $(document).ready(function () {
   })();
 
 
-
   $(".first-form-step").submit(function (e) {
+    e.preventDefault();
+
     if ($('.phone-dis').val() < 1) {
       document.querySelector('#_form_3_submit').disabled = true;
       $('.phone-dis').addClass('_has_error');
       $('.phone-dis').closest('.form-group').append('<div class="_error _above"><div class="_error-arrow"></div><div class="_error-inner">This field is required.</div></div>');
-      e.preventDefault();
+      // e.preventDefault();
       // return false;
     } else {
       $('.phone-dis').removeClass(' _has_error');
@@ -407,9 +424,6 @@ $(document).ready(function () {
       document.querySelector('#_form_3_submit').disabled = false;
     }
   });
-
-
-
 
 
   // Submiting PayPal form
@@ -465,7 +479,7 @@ $(document).ready(function () {
     $('.first-form-step #email').val(pp_userdata.email);
     $('.first-form-step #fullname').val(pp_userdata.name);
     if (pp_userdata.phone1) {
-      iti.setNumber(pp_userdata.phone1+pp_userdata.phone2);
+      iti.setNumber(pp_userdata.phone1 + pp_userdata.phone2);
     }
     $('.first-form-step #phone').val(pp_userdata.phone2);
   }

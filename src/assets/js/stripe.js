@@ -52,6 +52,7 @@ jQuery(document).ready(function ($) {
           event.preventDefault();
           // Complete payment when the submit button is clicked
           payWithCard(stripe, card, data.clientSecret);
+
         });
       });
 
@@ -81,6 +82,16 @@ jQuery(document).ready(function ($) {
         } else {
           // The payment succeeded!
           orderComplete(result.paymentIntent.id);
+
+          //emulate click on hidden form
+          if ($(".radio-group-options input[type='radio']:checked").val() == '$1,497') {
+            $('.hiddenFormJs ._form_7').submit();
+            // console.log('Full Pay Members');
+          } else {
+            $('.hiddenFormJs ._form_9').submit();
+            // console.log('Payment Plan Members');
+          }
+
         }
       });
   };
@@ -101,6 +112,7 @@ jQuery(document).ready(function ($) {
 
     // document.querySelector(".strapiBtn").disabled = true;
     document.querySelector(".strapiBtn").classList.add("hidden");
+
   };
 
   // Show the customer the error from Stripe if their card fails to charge
