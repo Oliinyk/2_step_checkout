@@ -1,6 +1,6 @@
 $(document).ready(function () {
   let input = document.querySelector("#phone-send");
-  window.intlTelInput(input, {
+  window.iti = window.intlTelInput(input, {
     initialCountry: "auto",
     geoIpLookup: function (callback) {
       $.get('https://ipinfo.io', function () { }, "jsonp").always(function (resp) {
@@ -445,10 +445,30 @@ $(document).ready(function () {
       $('#paypal-form input[name=night_phone_a]').val(pp_userdata.phone1);
       $('#paypal-form input[name=night_phone_b]').val(pp_userdata.phone2);
 
-      $('#paypal-form').submit();
-
-      $('.hiddenFormJs ._form_7').submit();
+      // Submit hihhen form to ActiveCampaign
+      //$('.hiddenFormJs ._form_7').submit();
+      let formAC = $('.hiddenFormJs ._form_7');
+      let iframe = document.createElement("iframe");
+      let uniqueString = "ACpostFormSubmitting";
+      document.body.appendChild(iframe);
+      iframe.style.display = "none";
+      iframe.contentWindow.name = uniqueString;
+      let form = document.createElement("form");
+      form.target = uniqueString;
+      form.action = formAC.attr('action');
+      form.method = "POST";
+      $('input', formAC).each(function () {
+        let input = document.createElement("input");
+        input.type = "hidden";
+        input.name = $(this).attr('name');
+        input.value = $(this).val();
+        form.appendChild(input);
+      })
+      document.body.appendChild(form);
+      form.submit();
       console.log('Full Pay Members');
+
+      $('#paypal-form').submit();
     } else {
       console.log('User data is not set. Form not possible to submit.');
     }
@@ -472,7 +492,7 @@ $(document).ready(function () {
     let email = $('.first-form-step #email').val();
     let name = $('.first-form-step #fullname').val();
     let phone1 = $('.iti__selected-dial-code').text();
-    let phone2 = $('.first-form-step #phone').val();
+    let phone2 = $('.first-form-step #phone-send').val();
 
     const pp_userdata = {
       email: email,
@@ -487,7 +507,7 @@ $(document).ready(function () {
   function get_userdata() {
     let pp_userdata_str = window.localStorage.getItem('pp_userdata');
     if (pp_userdata_str) {
-      return JSON.parse(pp_userdata);
+      return JSON.parse(pp_userdata_str);
     } else {
       return null;
     }
@@ -503,8 +523,9 @@ $(document).ready(function () {
       if (pp_userdata.phone1) {
         iti.setNumber(pp_userdata.phone1 + pp_userdata.phone2);
       }
-      $('.first-form-step #phone').val(pp_userdata.phone2);
+      $('.first-form-step #phone-send').val(pp_userdata.phone2);
     }
   }
 
 });
+
