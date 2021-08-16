@@ -58,6 +58,14 @@ $(document).ready(function () {
     $(".titleTotalJs").text(thisTitle);
   });
 
+  //checkbox on step 2
+  $(document).on("click", ".customCheckJs", function () {
+    if ($(this).find('input').prop("checked")) {
+      $('.strapiBtn').removeClass('disabled');
+    } else {
+      $('.strapiBtn').addClass('disabled');
+    }
+  });
 
   // activecampaign
   window.cfields = [];
