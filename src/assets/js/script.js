@@ -439,15 +439,19 @@ $(document).ready(function () {
     // Load user data
     let pp_userdata = get_userdata();
 
-    $('#paypal-form input[name=email]').val(pp_userdata.email);
-    $('#paypal-form input[name=first_name]').val(pp_userdata.name);
-    $('#paypal-form input[name=night_phone_a]').val(pp_userdata.phone1);
-    $('#paypal-form input[name=night_phone_b]').val(pp_userdata.phone2);
+    if (pp_userdata) {
+      $('#paypal-form input[name=email]').val(pp_userdata.email);
+      $('#paypal-form input[name=first_name]').val(pp_userdata.name);
+      $('#paypal-form input[name=night_phone_a]').val(pp_userdata.phone1);
+      $('#paypal-form input[name=night_phone_b]').val(pp_userdata.phone2);
 
-    $('#paypal-form').submit();
+      $('#paypal-form').submit();
 
-    $('.hiddenFormJs ._form_7').submit();
-    console.log('Full Pay Members');
+      $('.hiddenFormJs ._form_7').submit();
+      console.log('Full Pay Members');
+    } else {
+      console.log('User data is not set. Form not possible to submit.');
+    }
 
     return false;
   });
@@ -481,19 +485,26 @@ $(document).ready(function () {
   }
 
   function get_userdata() {
-    return JSON.parse(window.localStorage.getItem('pp_userdata'));
+    let pp_userdata_str = window.localStorage.getItem('pp_userdata');
+    if (pp_userdata_str) {
+      return JSON.parse(pp_userdata);
+    } else {
+      return null;
+    }
   }
 
   if ($('#paypal-form')) {
     // Load user data
     let pp_userdata = get_userdata();
 
-    $('.first-form-step #email').val(pp_userdata.email);
-    $('.first-form-step #fullname').val(pp_userdata.name);
-    if (pp_userdata.phone1) {
-      iti.setNumber(pp_userdata.phone1 + pp_userdata.phone2);
+    if (pp_userdata) {
+      $('.first-form-step #email').val(pp_userdata.email);
+      $('.first-form-step #fullname').val(pp_userdata.name);
+      if (pp_userdata.phone1) {
+        iti.setNumber(pp_userdata.phone1 + pp_userdata.phone2);
+      }
+      $('.first-form-step #phone').val(pp_userdata.phone2);
     }
-    $('.first-form-step #phone').val(pp_userdata.phone2);
   }
 
 });
