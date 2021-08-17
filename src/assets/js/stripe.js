@@ -65,7 +65,7 @@ jQuery(document).ready(function ($) {
   server_endpoint();
 
   // 
-  $(document).on("click", ".form-check .form-check-label, .form-check .form-check-input", function () {
+  $(document).on("click", ".form-check .form-check-label", function () {
     server_endpoint();
   });
 
