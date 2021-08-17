@@ -404,6 +404,9 @@ $(document).ready(function () {
     var form_submit = function (e) {
       e.preventDefault();
       if (validate_form()) {
+        // Saving user data
+        collect_userdata();
+
         // use this trick to get the submit button & disable it using plain javascript
         document.querySelector('#_form_3_submit').disabled = true;
         var serialized = _form_serialize(document.getElementById('_form_3_')).replace(/%0A/g, '\\n');
