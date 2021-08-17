@@ -2,8 +2,11 @@
 
 use Stripe\Exception\ApiErrorException;
 use Stripe\PaymentIntent;
+use Stripe\Price;
+use Stripe\Product;
 use Stripe\Stripe;
 use Stripe\Customer;
+use Stripe\Subscription;
 
 $i = 1;
 
@@ -29,7 +32,7 @@ try {
         die();
     }
 
-    $customer = null;
+    $customer = $clientSecret = null;
 
     if($json->email){
         $customers = Customer::all(['email' => $json->email]);
@@ -37,7 +40,7 @@ try {
         if($customers->count()){
             $customer = $customers->first();
 
-            $customer->updateAttributes([
+            Customer::update($customer->id, [
                 'email' => $json->email ?? null,
                 'name' => $json->name ?? null,
                 'phone' => $json->phone ?? null,
@@ -59,14 +62,52 @@ try {
                 'currency' => 'usd',
                 'customer' => $customer,
             ]);
+
+            $clientSecret = $payment->client_secret;
             break;
         case 'paymentPlan':
-            return $_ENV['PRICE_PLAN'] * 100;
+            $products = Product::all(['ids' => [$_ENV['PRODUCT_ID']]]);
+
+            if($products->count()){
+                $product = $products->first();
+            } else {
+                $product = Product::create([
+                    'id' => $_ENV['PRODUCT_ID'],
+                    'name' => 'Beauty Boss 2.0 - Payment plan',
+                ]);
+            }
+
+            $prices = Price::all(['product' => $product->id]);
+
+            if($prices->count()){
+                $price = $prices->first();
+            } else {
+                $price = Price::create([
+                    'currency' => 'usd',
+                    'product' => $product->id,
+                    'unit_amount' => $_ENV['PRICE_PLAN'] * 100,
+                    'recurring' => [
+                        'interval' => 'month',
+                        'interval_count' => 3,
+                    ]
+                ]);
+            }
+
+            $subscription = Subscription::create([
+                'customer' => $customer->id,
+                'items' =>[
+                    ['price' => $price->id]
+                ],
+                'payment_behavior' => 'default_incomplete',
+                'expand' => ['latest_invoice.payment_intent'],
+            ]);
+
+            $clientSecret = $subscription->latest_invoice->payment_intent->client_secret;
             break;
     }
 
     $output = [
-        'clientSecret' => $payment->client_secret,
+        'clientSecret' => $clientSecret,
     ];
 
     echo json_encode($output);
