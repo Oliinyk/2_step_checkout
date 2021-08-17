@@ -12,7 +12,12 @@ jQuery(document).ready(function ($) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ items: [] })
+      body: JSON.stringify({
+        payment: $('[name=flexRadioDefault]:checked').val(),
+        name: $('#fullname').val(),
+        email: $('#email').val(),
+        phone: $('.phoneHiddenJs').val()
+      })
     })
       .then(function (result) {
         return result.json();
@@ -84,7 +89,7 @@ jQuery(document).ready(function ($) {
           orderComplete(result.paymentIntent.id);
 
           //emulate click on hidden form
-          if ($(".radio-group-options input[type='radio']:checked").val() == '$1,497') {
+          if ($(".radio-group-options input[type='radio']:checked").val() == 'paymentOneTime') {
             $('.hiddenFormJs ._form_7').submit();
             console.log('Full Pay Members');
           } else {
