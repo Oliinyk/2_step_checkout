@@ -117,7 +117,7 @@ function watch_change() {
     watch(config.basepath + config.devPaths.scripts + '**/*.js', series(javascript, browser_sync_reload));
     // watch('./list_plugins.js', series(pluginsScripts,  browser_sync_reload));
     watch(config.basepath + "**/*.html", series(html_change, addEnvVars, browser_sync_reload));
-    watch(config.basepath + config.devPaths.images + '**/*.{png,jpg,jpeg,svg,webp}', series(images_clean, images, images_webp));
+    watch(config.basepath + config.devPaths.images + '**/*.{png,jpg,jpeg,svg,ico,webp}', series(images_clean, images, images_webp));
     watch(config.basepath + config.devPaths.fonts + "**/*.{woff,woff2,otf,ttf}", fonts);
     // watch(config.basepath+config.devPaths.images + '**/*.webp', images_webp);
 }
@@ -130,7 +130,7 @@ function images_clean(cb) {
     cb();
 }
 function images() {
-    return src(config.basepath + config.devPaths.images + '**/*.{png,jpg,jpeg,svg}')
+    return src(config.basepath + config.devPaths.images + '**/*.{png,jpg,jpeg,svg,ico}')
         .pipe(cache(imagemin([
             imagemin.gifsicle({ interlaced: true }),
             jpegRecompress({
