@@ -58,6 +58,13 @@ $(document).ready(function () {
     $(".titleTotalJs").text(thisTitle);
   });
 
+  $(document).on("click", ".form-check .form-check-label", function () {
+    $(".form-check .form-check-input").removeAttr("checked");
+    if ($(this).closest('.form-check').find('input').prop("checked", true)) {
+      $(this).closest('.form-check').find('input').attr('checked', true)
+    }
+  })
+
   //checkbox on step 2
   $(document).on("click", ".customCheckJs", function () {
     if ($(this).find('input').prop("checked")) {

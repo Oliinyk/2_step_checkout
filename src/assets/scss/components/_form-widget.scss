@@ -241,6 +241,8 @@
       cursor: pointer;
       display: inline-block;
       font-size: 14px;
+      position: relative;
+      z-index: 2;
       &:after {
         content: "";
         display: none;
@@ -269,6 +271,8 @@
     position: absolute;
     top: 0;
     left: 0;
+    cursor: pointer;
+    z-index: 1;
     &:checked {
       border-color: #0d6efd;
       & + label {
