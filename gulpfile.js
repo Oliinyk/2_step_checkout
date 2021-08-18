@@ -2,8 +2,8 @@ const { watch, series, src, dest, parallel } = require('gulp');
 const browserSync = require('browser-sync').create();
 const reload = browserSync.reload;
 const concat = require('gulp-concat');
-const sass = require('gulp-sass');
-// var sass = require('gulp-sass')(require('sass'));
+// const sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 const del = require('del');
 const gulpIf = require('gulp-if');
 const cssnano = require('gulp-cssnano');
@@ -117,18 +117,18 @@ function watch_change() {
     watch(config.basepath + config.devPaths.scripts + '**/*.js', series(javascript, browser_sync_reload));
     // watch('./list_plugins.js', series(pluginsScripts,  browser_sync_reload));
     watch(config.basepath + "**/*.html", series(html_change, addEnvVars, browser_sync_reload));
-    watch(config.basepath + config.devPaths.images + '**/*.{png,jpg,jpeg,svg,ico,webp}', series(images_clean, images, images_webp));
+    watch(config.basepath + config.devPaths.images + '**/*.{png,jpg,jpeg,svg,ico,webp}', series(images));
     watch(config.basepath + config.devPaths.fonts + "**/*.{woff,woff2,otf,ttf}", fonts);
     // watch(config.basepath+config.devPaths.images + '**/*.webp', images_webp);
 }
-function images_webp() {
-    return src(config.basepath + config.devPaths.images + '**/*.webp').pipe(dest(config.distPaths.images))
-}
-function images_clean(cb) {
-    // return src(config.basepath+config.distPaths.images + '**/*.webp').pipe(dest(config.distPaths.images))
-    del.sync(config.distPaths.images);
-    cb();
-}
+// // function images_webp() {
+// //     return src(config.basepath + config.devPaths.images + '**/*.webp').pipe(dest(config.distPaths.images))
+// // }
+// function images_clean(cb) {
+//     // return src(config.basepath+config.distPaths.images + '**/*.webp').pipe(dest(config.distPaths.images))
+//     del.sync(config.distPaths.images);
+//     cb();
+// }
 function images() {
     return src(config.basepath + config.devPaths.images + '**/*.{png,jpg,jpeg,svg,ico}')
         .pipe(cache(imagemin([
@@ -151,5 +151,5 @@ function addEnvVars() {
         })))
         .pipe(dest(config.distPaths.html));
 };
-exports.default = series(clean, images, images_webp, fonts, html_change, pluginsScripts, javascript, sass_tocss, css, addEnvVars, browser_sync, watch_change);
-exports.build = series(clean, images, images_webp, fonts, html_change, pluginsScripts, javascript, sass_tocss, css, html_build, images_build, fonts_build, addEnvVars);
+exports.default = series(clean, images, fonts, html_change, pluginsScripts, javascript, sass_tocss, css, addEnvVars, browser_sync, watch_change);
+exports.build = series(clean, images, fonts, html_change, pluginsScripts, javascript, sass_tocss, css, html_build, images_build, fonts_build, addEnvVars);
