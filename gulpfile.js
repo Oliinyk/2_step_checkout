@@ -60,7 +60,7 @@ function html_build(cb) {
     return cb();
 }
 function images_build(cb) {
-    src(config.distPaths.images + '**/*.{png,jpg,jpeg,webp,svg}')
+    src(config.distPaths.images + '**/*.{png,jpg,jpeg,webp,svg,ico}')
         .pipe(dest(config.distPaths.headerFolder + config.devPaths.images));
     return cb();
 }
