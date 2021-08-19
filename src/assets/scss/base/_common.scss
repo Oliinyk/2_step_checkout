@@ -108,6 +108,13 @@ ul {
     background-color: rgb(237, 117, 117);
   }
 }
+.btn-primary {
+  background-color: #19b50b;
+  border: 1px solid #19b50b;
+  &:hover {
+    background-color: #34c827;
+  }
+}
 .paypal-btn {
   border-color: rgb(66, 127, 191);
   background-color: rgb(59, 123, 191);
