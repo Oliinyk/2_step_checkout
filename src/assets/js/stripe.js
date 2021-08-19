@@ -6,6 +6,48 @@ jQuery(document).ready(function ($) {
   // document.querySelector("#strapiBtn").disabled = true;
   document.querySelector(".strapiBtn").disabled = true;
 
+  var elements = stripe.elements();
+  var style = {
+    base: {
+      color: "#32325d",
+      fontFamily: 'Arial, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "16px",
+      "::placeholder": {
+        color: "#32325d"
+      }
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: "#fa755a",
+      iconColor: "#fa755a"
+    }
+  };
+  var card = elements.create("card", { style: style });
+  // Stripe injects an iframe into the DOM
+  card.mount("#card-element");
+
+  card.on("change", function (event) {
+    // Disable the Pay button if there are no card details in the Element
+    document.querySelector(".strapiBtn").disabled = event.empty;
+    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+  });
+
+  $(document).on("click", "#strapiBtn", function (event) {
+    event.preventDefault();
+    if ($(this).is(":disabled")) {
+      return false;
+    }
+
+    if ( ! window.clientSecret) {
+      console.log("Server response has not arrived. clientSecret is empty.")
+      return false;
+    }
+
+    // Complete payment when the submit button is clicked
+    payWithCard(stripe, card, window.clientSecret);
+  });
+
   function server_endpoint() {
     fetch(ENV_VARS.SERVER_ENDPOINT, {
       method: "POST",
@@ -23,34 +65,7 @@ jQuery(document).ready(function ($) {
         return result.json();
       })
       .then(function (data) {
-        var elements = stripe.elements();
 
-        var style = {
-          base: {
-            color: "#32325d",
-            fontFamily: 'Arial, sans-serif',
-            fontSmoothing: "antialiased",
-            fontSize: "16px",
-            "::placeholder": {
-              color: "#32325d"
-            }
-          },
-          invalid: {
-            fontFamily: 'Arial, sans-serif',
-            color: "#fa755a",
-            iconColor: "#fa755a"
-          }
-        };
-
-        var card = elements.create("card", { style: style });
-        // Stripe injects an iframe into the DOM
-        card.mount("#card-element");
-
-        card.on("change", function (event) {
-          // Disable the Pay button if there are no card details in the Element
-          document.querySelector(".strapiBtn").disabled = event.empty;
-          document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
-        });
 /* @1819
         var form = document.getElementById("payment-form");
         form.addEventListener("submit", function (event) {
@@ -61,17 +76,7 @@ jQuery(document).ready(function ($) {
 
         });
  */
-        let clientSecret = data.clientSecret;
-        $(document).on("click", "#strapiBtn", function (event) {
-          event.preventDefault();
-          if ($(this).is(":disabled")) {
-            return false;
-          }
-
-          // Complete payment when the submit button is clicked
-          payWithCard(stripe, card, clientSecret);
-        });
-
+        window.clientSecret = data.clientSecret;
       });
 
   }
