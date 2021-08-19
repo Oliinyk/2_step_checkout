@@ -47,7 +47,7 @@ $(document).ready(function () {
     document.querySelector('#_form_3_submit').disabled = false;
   });
 
-  let checkedVal = $(".radio-group-options input[type='radio']:checked").val();
+  let checkedVal = $(".radio-group-options input[type='radio']:checked").attr('data-val');
   let checkedTitle = $(".radio-group-options input[type='radio']:checked ~ .form-check-label").text();
   $(".amountTotalJs").text(checkedVal);
   $(".titleTotalJs").text(checkedTitle);
