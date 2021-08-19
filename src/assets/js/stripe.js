@@ -51,7 +51,7 @@ jQuery(document).ready(function ($) {
           document.querySelector(".strapiBtn").disabled = event.empty;
           document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
         });
-
+/* @1819
         var form = document.getElementById("payment-form");
         form.addEventListener("submit", function (event) {
           event.preventDefault();
@@ -60,6 +60,17 @@ jQuery(document).ready(function ($) {
           payWithCard(stripe, card, data.clientSecret);
 
         });
+ */
+        $(document).on("click", "#strapiBtn", function (event) {
+          event.preventDefault();
+          if ($(this).is(":disabled")) {
+            return false;
+          }
+
+          // Complete payment when the submit button is clicked
+          payWithCard(stripe, card, data.clientSecret);
+        });
+
       });
 
   }
@@ -138,12 +149,12 @@ jQuery(document).ready(function ($) {
       document.querySelector(".strapiBtn").disabled = true;
       document.querySelector(".spinner").classList.remove("hidden");
       document.querySelector(".button-text").classList.add("hidden");
-      $(".strapiBtn").attr("disabled", true).attr("type", "button");
+      $(".strapiBtn").attr("disabled", true);
     } else {
       document.querySelector(".strapiBtn").disabled = false;
       document.querySelector(".spinner").classList.add("hidden");
       document.querySelector(".button-text").classList.remove("hidden");
-      $(".strapiBtn").removeAttr("disabled").attr("type", "submit");
+      $(".strapiBtn").removeAttr("disabled");
     }
   };
 
