@@ -52,7 +52,7 @@ $(document).ready(function () {
   $(".amountTotalJs").text(checkedVal);
   $(".titleTotalJs").text(checkedTitle);
   $(document).on("click", ".form-check .form-check-label, .form-check .form-check-input", function () {
-    let thisVal = $(this).closest('.form-check').find('input').val();
+    let thisVal = $(this).closest('.form-check').find('input').attr('data-val');
     let thisTitle = $(this).closest('.form-check').find('.form-check-label').text();
     $(".amountTotalJs").text(thisVal);
     $(".titleTotalJs").text(thisTitle);
