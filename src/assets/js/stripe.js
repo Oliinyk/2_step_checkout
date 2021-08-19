@@ -61,6 +61,7 @@ jQuery(document).ready(function ($) {
 
         });
  */
+        let clientSecret = data.clientSecret;
         $(document).on("click", "#strapiBtn", function (event) {
           event.preventDefault();
           if ($(this).is(":disabled")) {
@@ -68,7 +69,7 @@ jQuery(document).ready(function ($) {
           }
 
           // Complete payment when the submit button is clicked
-          payWithCard(stripe, card, data.clientSecret);
+          payWithCard(stripe, card, clientSecret);
         });
 
       });
