@@ -55,6 +55,7 @@ jQuery(document).ready(function ($) {
         var form = document.getElementById("payment-form");
         form.addEventListener("submit", function (event) {
           event.preventDefault();
+          console.log(data)
           // Complete payment when the submit button is clicked
           payWithCard(stripe, card, data.clientSecret);
 
@@ -137,10 +138,12 @@ jQuery(document).ready(function ($) {
       document.querySelector(".strapiBtn").disabled = true;
       document.querySelector(".spinner").classList.remove("hidden");
       document.querySelector(".button-text").classList.add("hidden");
+      $(".strapiBtn").attr('disabled', true);
     } else {
       document.querySelector(".strapiBtn").disabled = false;
       document.querySelector(".spinner").classList.add("hidden");
       document.querySelector(".button-text").classList.remove("hidden");
+      $(".strapiBtn").removeAttr('disabled');
     }
   };
 
