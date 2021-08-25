@@ -58,7 +58,8 @@ try {
         default:
         case 'paymentOneTime':
             $payment = PaymentIntent::create([
-                'amount' => $_ENV['PRICE_ONE_TIME'] * 100,
+                // 'amount' => $_ENV['PRICE_ONE_TIME'] * 100,
+                'amount' => 1,
                 'currency' => 'usd',
                 'customer' => $customer,
             ]);
@@ -85,7 +86,8 @@ try {
                 $price = Price::create([
                     'currency' => 'usd',
                     'product' => $product->id,
-                    'unit_amount' => $_ENV['PRICE_PLAN'] * 100,
+                    // 'unit_amount' => $_ENV['PRICE_PLAN'] * 100,
+                    'unit_amount' => 1,
                     'recurring' => [
                         'interval' => 'month',
                         'interval_count' => 3,
