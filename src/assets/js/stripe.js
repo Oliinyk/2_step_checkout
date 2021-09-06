@@ -144,8 +144,10 @@ jQuery(document).ready(function ($) {
     loading(false);
     var errorMsg = document.querySelector("#card-error");
     errorMsg.textContent = errorMsgText;
+    $("#card-form-control").addClass("red");
     setTimeout(function () {
       errorMsg.textContent = "";
+      $("#card-form-control").removeClass("red");
     }, 4000);
   };
 
@@ -157,11 +159,13 @@ jQuery(document).ready(function ($) {
       document.querySelector(".spinner").classList.remove("hidden");
       document.querySelector(".button-text").classList.add("hidden");
       $(".strapiBtn").attr("disabled", true);
+      $("#overlay").removeClass("hidden");
     } else {
       document.querySelector(".strapiBtn").disabled = false;
       document.querySelector(".spinner").classList.add("hidden");
       document.querySelector(".button-text").classList.remove("hidden");
       $(".strapiBtn").removeAttr("disabled");
+      $("#overlay").addClass("hidden");
     }
   };
 
