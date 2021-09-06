@@ -102,6 +102,7 @@ jQuery(document).ready(function ($) {
         if (result.error) {
           // Show error to your customer
           showError(result.error.message);
+          $( "#card-element" ).effect( "shake" );
         } else {
           // The payment succeeded!
           orderComplete(result.paymentIntent.id);
