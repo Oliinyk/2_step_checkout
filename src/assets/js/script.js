@@ -98,8 +98,8 @@ $(document).ready(function () {
     // $("#_form_7_").find('.priceHolderJs').val('$1,497');
     // $("#_form_9_").find('.priceHolderJs').val('$797');
 
-    $("._form_7.hiddenFormJs").find('input[data-name="price"]').val('$1,497');
-    $("._form_9.hiddenFormJs").find('input[data-name="price"]').val('$797');
+    $("._form_7.hiddenFormJs").find('input[data-name="price"]').val('$997');
+    $("._form_9.hiddenFormJs").find('input[data-name="price"]').val('$497');
 
 
     // var form = document.getElementById('_form_' + id + '_'), thank_you = form.querySelector('._form-thank-you');
